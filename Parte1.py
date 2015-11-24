@@ -20,3 +20,11 @@ def H(v, d):
 datos = np.loadtxt('hubble_original.dat')
 distancia = datos[:, 0]
 velocidad = datos[:, 1]
+
+H0 = np.linspace(0, 24, 24)
+fig1 = plt.figure(1)
+fig1.clf()
+plt.plot(H0, H(velocidad, distancia))
+plt.xlabel('H0 (constante de Hubble) [km / s / Mpc]')
+plt.ylabel('V/D (velocidad/distancia) [km / s / Mpc]')
+plt.show()
