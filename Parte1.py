@@ -7,11 +7,7 @@ Created on Mon Nov 23 17:02:07 2015
 
 from __future__ import division
 import numpy as np
-import math
 import matplotlib.pyplot as plt
-import matplotlib.patches as mpatches
-from scipy import stats
-from scipy.optimize import (leastsq, curve_fit)
 
 def H(v, d):
     H = v / d

@@ -7,11 +7,7 @@ Created on Tue Nov 24 17:53:52 2015
 
 from __future__ import division
 import numpy as np
-import math
 import matplotlib.pyplot as plt
-import matplotlib.patches as mpatches
-from scipy import stats
-from scipy.optimize import (leastsq, curve_fit)
 
 def H(v, d):
     H = v / d
@@ -51,6 +47,7 @@ plt.show()
 mean_values_i2 = np.sort(mean_values_i)
 limite_bajo = mean_values_i2[int(Nmc * 0.025)]
 limite_alto = mean_values_i2[int(Nmc * 0.975)]
+print "Flujo i estimado = ", np.mean(muestra_i)
 print "El intervalo de confianza al 95% para banda_i es: [{}:{}]".format(limite_bajo, limite_alto)
 
 fig2 = plt.figure(2)
@@ -65,6 +62,7 @@ plt.show()
 mean_values_z2 = np.sort(mean_values_z)
 limite_bajo = mean_values_z2[int(Nmc * 0.025)]
 limite_alto = mean_values_z2[int(Nmc * 0.975)]
+print "Flujo z estimado = ", np.mean(muestra_z)
 print "El intervalo de confianza al 95% para banda_z es: [{}:{}]".format(limite_bajo, limite_alto)
 
 fig2 = plt.figure(3)
@@ -74,4 +72,4 @@ plt.xlabel('Flujo en banda i [1e-6 Jy]')
 plt.ylabel('Flujo en banda z [1e-6 Jy]')
 plt.show()
 coef=np.polyfit(mean_values_i,mean_values_z,1)
-print coef[1]
+print "Coeficientes de polyfit = ", coef[0], coef [1]
