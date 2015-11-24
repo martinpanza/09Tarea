@@ -28,3 +28,12 @@ plt.plot(H0, H(velocidad, distancia))
 plt.xlabel('H0 (constante de Hubble) [km / s / Mpc]')
 plt.ylabel('V/D (velocidad/distancia) [km / s / Mpc]')
 plt.show()
+
+np.random.seed(112)
+muestra = H(velocidad, distancia)
+
+N = len(muestra)
+Nboot = 100000
+#Nboot = int(N * np.log10(N)**2)
+mean_values = np.zeros(Nboot)
+print Nboot
