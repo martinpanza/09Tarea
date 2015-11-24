@@ -23,3 +23,17 @@ banda_i = datos[:, 0]
 error_banda_i = datos[:, 1]
 banda_z = datos[:, 2]
 error_banda_z = datos[:, 3]
+
+Nmc = 60000
+mean_values_i = np.zeros(Nmc)
+for i in range(Nmc):
+    r = np.random.normal(0, 1, size=len(banda_i))
+    muestra_i = banda_i + error_banda_i * r
+    mean_values_i[i] = np.mean(muestra_i)
+    
+Nmc = 60000
+mean_values_z = np.zeros(Nmc)
+for i in range(Nmc):
+    r = np.random.normal(0, 1, size=len(banda_z))
+    muestra_z = banda_z + error_banda_z * r
+    mean_values_z[i] = np.mean(muestra_z)
