@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
 """
-Created on Mon Nov 23 17:02:07 2015
-
-@author: splatt
+Se estima la constante de Hubble a partir de los datos en el archivo
+hubble_original.dat
 """
 
 from __future__ import division
 import numpy as np
 import matplotlib.pyplot as plt
+
 
 def H(v, d):
     H = v / d
@@ -49,4 +49,5 @@ mean_values = np.sort(mean_values)
 limite_bajo = mean_values[int(Nboot * 0.025)]
 limite_alto = mean_values[int(Nboot * 0.975)]
 print "H estimado = ", np.mean(muestra)
-print "El intervalo de confianza al 95% es: [{}:{}]".format(limite_bajo, limite_alto)
+print ("El intervalo de confianza al 95% es:[{}:{}]".format(limite_bajo,
+                                                            limite_alto))
