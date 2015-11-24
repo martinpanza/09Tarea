@@ -23,6 +23,12 @@ distancia = datos[:, 0]
 velocidad = datos[:, 1]
 
 H0 = np.linspace(0, 36, 36)
+fig1 = plt.figure(1)
+fig1.clf()
+plt.plot(H0, H(velocidad, distancia))
+plt.xlabel('H0 (constante de Hubble) [km / s / Mpc]')
+plt.ylabel('V/D (velocidad/distancia) [km / s / Mpc]')
+plt.show()
 
 np.random.seed(111)
 muestra = H(velocidad, distancia)
@@ -38,13 +44,14 @@ for i in range(Nboot):
 fig2 = plt.figure(2)
 fig2.clf()
 plt.hist(mean_values, bins=30)
-plt.axvline(np.mean(muestra), color='r')
+plt.axvline(np.mean(muestra), color='r', label='H estimado')
 plt.xlabel('H0 (constante de Hubble) [km / s / Mpc]')
 plt.ylabel('V/D (velocidad/distancia) [km / s / Mpc]')
-plt.legend('H','r')
+plt.legend(shadow=True, fancybox=True)
 plt.show()
 
 mean_values = np.sort(mean_values)
-limite_bajo = mean_values[int(Nboot * 0.05)]
-limite_alto = mean_values[int(Nboot * 0.95)]
+limite_bajo = mean_values[int(Nboot * 0.025)]
+limite_alto = mean_values[int(Nboot * 0.975)]
+print "H estimado = ", np.mean(muestra)
 print "El intervalo de confianza al 95% es: [{}:{}]".format(limite_bajo, limite_alto)

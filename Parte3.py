@@ -17,7 +17,7 @@ def H(v, d):
     H = v / d
     return H
 
-datos = np.loadtxt('DR9Q.dat',usecols = (79,80,81,82))
+datos = np.loadtxt('DR9Q.dat', usecols = (79,80,81,82))
 datos = datos / 3.631
 banda_i = datos[:, 0]
 error_banda_i = datos[:, 1]
@@ -42,27 +42,36 @@ for i in range(Nmc):
 fig1 = plt.figure(1)
 fig1.clf()
 plt.hist(mean_values_i, bins=30)
-plt.axvline(np.mean(muestra_i), color='r')
-plt.xlabel('Muestra z')
+plt.axvline(np.mean(muestra_i), color='r', label='flujo i estimado')
+plt.xlabel('Muestra i')
 plt.ylabel('Flujo en banda i [1e-6 Jy]')
-plt.legend('H','r')
+plt.legend(shadow=True, fancybox=True)
 plt.show()
 
 mean_values_i2 = np.sort(mean_values_i)
-limite_bajo = mean_values_i2[int(Nmc * 0.05)]
-limite_alto = mean_values_i2[int(Nmc * 0.95)]
+limite_bajo = mean_values_i2[int(Nmc * 0.025)]
+limite_alto = mean_values_i2[int(Nmc * 0.975)]
 print "El intervalo de confianza al 95% para banda_i es: [{}:{}]".format(limite_bajo, limite_alto)
 
 fig2 = plt.figure(2)
 fig2.clf()
 plt.hist(mean_values_z, bins=30)
-plt.axvline(np.mean(muestra_z), color='r')
+plt.axvline(np.mean(muestra_z), color='r', label='flujo z estimado')
 plt.xlabel('Muestra z')
 plt.ylabel('Flujo en banda z [1e-6 Jy]')
-plt.legend('H','r')
+plt.legend(shadow=True, fancybox=True)
 plt.show()
 
 mean_values_z2 = np.sort(mean_values_z)
-limite_bajo = mean_values_z2[int(Nmc * 0.05)]
-limite_alto = mean_values_z2[int(Nmc * 0.95)]
+limite_bajo = mean_values_z2[int(Nmc * 0.025)]
+limite_alto = mean_values_z2[int(Nmc * 0.975)]
 print "El intervalo de confianza al 95% para banda_z es: [{}:{}]".format(limite_bajo, limite_alto)
+
+fig2 = plt.figure(3)
+fig2.clf()
+plt.plot(np.polyfit(mean_values_i,mean_values_z,1))
+plt.xlabel('Flujo en banda i [1e-6 Jy]')
+plt.ylabel('Flujo en banda z [1e-6 Jy]')
+plt.show()
+coef=np.polyfit(mean_values_i,mean_values_z,1)
+print coef[1]
